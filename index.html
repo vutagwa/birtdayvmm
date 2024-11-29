@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Virginia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(45deg, #8B4513, #A0522D, #D2691E); /* Shades of Brown Gradient */
+      font-family: "Arial", sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      position: relative;
+      animation: backgroundAnimation 10s infinite alternate;
+    }
+
+    /* Confetti animation */
+    @keyframes confetti {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .confetti {
+      position: absolute;
+      top: -10%;
+      width: 10px;
+      height: 10px;
+      background-color: #C38E6D;
+      animation: confetti 5s infinite linear;
+      opacity: 0;
+    }
+
+    .confetti:nth-child(odd) {
+      background-color: #8B5A2B;
+      animation-delay: -1s;
+    }
+
+    .confetti:nth-child(even) {
+      background-color: #D2B48C;
+      animation-delay: -2s;
+    }
+
+    @keyframes backgroundAnimation {
+      0% { background: linear-gradient(45deg, #8B4513, #A0522D, #D2691E); }
+      100% { background: linear-gradient(45deg, #6B4226, #8B4513, #D2691E); }
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .message, .note, img, video {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease-in-out;
+      position: absolute;
+    }
+
+    .message.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    img {
+      width: 200px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .note {
+      font-family: "Patrick Hand", cursive;
+      font-size: 0.8rem;
+      background: #D2B48C; /* Light Brown Post-it */
+      color: #5C4033; /* Darker Brown */
+      width: 100px;
+      height: 100px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5), -2px -2px 5px rgba(255, 255, 255, 0.5);
+      line-height: 1.2;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      animation: pop 1s ease-in-out forwards;
+    }
+
+    .note::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, #8B5A2B 50%, #5C4033 90%);
+      border-radius: 50%;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .final-message {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #FFF5E1; /* Off White */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .countdown {
+      font-size: 5rem;
+      font-weight: bold;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Animations */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes pop {
+      0% { opacity: 0; transform: scale(0.5); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="content-container" class="container">
+    <div id="countdown" class="countdown"></div>
+  </div>
+
+  <!-- Confetti Effect -->
+  <script>
+    // Confetti Elements
+    for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      document.body.appendChild(confetti);
+    }
+
+    // Define content
+    const pictures = [
+      "path/to/picture1.jpg",
+      "path/to/picture2.jpg",
+      "path/to/picture3.jpg",
+      "path/to/picture4.jpg",
+      "path/to/picture5.jpg",
+      "path/to/picture6.jpg"
+    ];
+
+    const videos = [
+      "path/to/video1.mp4",
+      "path/to/video2.mp4"
+    ];
+
+    const notes = {
+      encouragement: [
+        "Virginia, keep being the amazing person you are! ❤️",
+        "You can do anything you set your mind to. 🌟",
+        "Always remember: You are stronger than you think!",
+        "Virginia, the world is better with you in it. 🌸"
+      ],
+      funny: [
+        "Did you know you get cooler every year? Science can't explain it. 😄",
+        "I was going to get you a cake, but I ate it. 🍰 Sorry not sorry.",
+        "Are you 22 or 12? Because you're way too fun! 😆"
+      ],
+      cute: [
+        "You're the sweetest friend anyone could ask for. 💕",
+        "Virginia, you light up every room you enter. 🌟"
+      ]
+    };
+
+    const finalMessage = "Happy Sweet 22 Virginia, Love You ❤️";
+
+    // Combine all content into a single array
+    let allContent = [
+      ...pictures.map(pic => ({ type: "picture", src: pic })),
+      ...videos.map(vid => ({ type: "video", src: vid })),
+      ...notes.encouragement.map(note => ({ type: "note", text: note })),
+      ...notes.funny.map(note => ({ type: "note", text: note })),
+      ...notes.cute.map(note => ({ type: "note", text: note }))
+    ];
+
+    // Countdown Functionality
+    const countdownElement = document.getElementById("countdown");
+    let countdownTime = 5;
+
+    function startCountdown() {
+      countdownElement.textContent = countdownTime;
+
+      const countdownInterval = setInterval(() => {
+        countdownTime--;
+
+        if (countdownTime > 0) {
+          countdownElement.textContent = countdownTime;
+        } else {
+          clearInterval(countdownInterval);
+          countdownElement.textContent = ""; // Clear countdown
+          displayContent(); // Start the slideshow
+        }
+      }, 1000);
+    }
+
+    // Get random positions for elements
+    function getRandomPosition() {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      return { x, y };
+    }
+
+    // Display content sequentially with random positions
+    function displayContent() {
+      let delay = 0;
+      allContent.forEach((item) => {
+        const element = document.createElement(item.type === "picture" ? "img" : item.type === "video" ? "video" : "div");
+        if (item.type === "picture" || item.type === "video") {
+          element.src = item.src;
+          element.classList.add(item.type);
+        } else if (item.type === "note") {
+          element.classList.add("note");
+          element.textContent = item.text;
+        }
+
+        // Set a random position for each item
+        const { x, y } = getRandomPosition();
+        element.style.left = `${x}px`;
+        element.style.top = `${y}px`;
+
+        // Add element to the body
+        document.body.appendChild(element);
+
+        // Sequentially display each element with delay
+        setTimeout(() => {
+          element.classList.add("visible");
+        }, delay);
+
+        delay += 250; // Increase delay for each item
+      });
+
+      // Final message after all content
+      setTimeout(() => {
+        const finalMessageElement = document.createElement("div");
+        finalMessageElement.classList.add("final-message");
+        finalMessageElement.textContent = finalMessage;
+        document.body.appendChild(finalMessageElement);
+      }, delay);
+    }
+
+    // Start countdown when page loads
+    window.onload = startCountdown;
+  </script>
+</body>
+</html>
